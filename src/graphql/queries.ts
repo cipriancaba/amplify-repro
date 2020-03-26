@@ -80,3 +80,31 @@ export const listMeals = /* GraphQL */ `
     }
   }
 `;
+export const listMealsByUser = /* GraphQL */ `
+  query ListMealsByUser(
+    $userId: ID
+    $sortDirection: ModelSortDirection
+    $filter: ModelMealFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listMealsByUser(
+      userId: $userId
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        recipeId
+        recipe {
+          id
+          title
+        }
+        userId
+      }
+      nextToken
+    }
+  }
+`;

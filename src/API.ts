@@ -148,6 +148,12 @@ export type ModelMealFilterInput = {
   not?: ModelMealFilterInput | null,
 };
 
+export enum ModelSortDirection {
+  ASC = "ASC",
+  DESC = "DESC",
+}
+
+
 export type CreateRecipeMutationVariables = {
   input: CreateRecipeInput,
   condition?: ModelRecipeConditionInput | null,
@@ -369,6 +375,32 @@ export type ListMealsQueryVariables = {
 
 export type ListMealsQuery = {
   listMeals:  {
+    __typename: "ModelMealConnection",
+    items:  Array< {
+      __typename: "Meal",
+      id: string,
+      recipeId: string,
+      recipe:  {
+        __typename: "Recipe",
+        id: string,
+        title: string | null,
+      } | null,
+      userId: string | null,
+    } | null > | null,
+    nextToken: string | null,
+  } | null,
+};
+
+export type ListMealsByUserQueryVariables = {
+  userId?: string | null,
+  sortDirection?: ModelSortDirection | null,
+  filter?: ModelMealFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListMealsByUserQuery = {
+  listMealsByUser:  {
     __typename: "ModelMealConnection",
     items:  Array< {
       __typename: "Meal",
