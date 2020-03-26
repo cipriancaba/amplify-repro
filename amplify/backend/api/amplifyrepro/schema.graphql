@@ -57,7 +57,7 @@ type Meal
       }
     ]
   )
-  @key(name: "byUser", fields: ["userId"]) {
+  @key(name: "byUser", fields: ["userId"], queryField: "listMealsByUser") {
   id: ID!
 
   recipeId: ID!
